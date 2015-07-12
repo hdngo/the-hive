@@ -10,12 +10,15 @@ class Bumblebee < ActiveRecord::Base
 	validates :password_hash, uniqueness: true
   has_many :photos
 
-  has_many :friendships,
+  # i don't like the inverse friendship part, but apparently its the way of implementing mutual friendships..
+  has_many :friendships
+  has_many :friends, 
+		through: :friendships
+	has_many :inverse_friendships,
   	foreign_key: "friend_id",
   	class_name: "Friendship"
-	has_many :friends, 
-		through: :friendships,
-		source: :friend
+	has_many :inverse_friends, through: :inverse_friendships, source: :bumblebee
+	
 
 	def password
 		@password ||= Password.new(password_hash)

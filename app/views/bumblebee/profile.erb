@@ -5,12 +5,22 @@
 <li>phone: <%= @user.phone_number %></li>
 </ul>
 
+<% if current_user != @user %>
+	<form action="/bumblebee/user/<%= @user.username %>/friend_request" method="post">
+	<textarea rows="8" cols="35" name="request_message" placeholder="Enter a message"></textarea>
+	<input type="submit" value="send <%= @user.username %> a friend request"> 
+	</form>
+
+<% end %>
+
+
 <p>current session user:<%= current_user.username %></p>
 
 
 <% @user.photos.each do |photo| %>
 <img src=<%= photo.link %> alt="an image">
 <% end %>
+
 
 
 <form action="/bumblebee/user/upload_photo" method="post">
