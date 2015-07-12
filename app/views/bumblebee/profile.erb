@@ -1,0 +1,22 @@
+<ul>
+<li><%= @user.username %>'s Profile</li>
+<li><%= @user.first_name%> <%=@user.last_name %></li>
+<li>email: <%= @user.email %></li>
+<li>phone: <%= @user.phone_number %></li>
+</ul>
+
+<p>current session user:<%= current_user.username %></p>
+
+
+<% @user.photos.each do |photo| %>
+<img src=<%= photo.link %> alt="an image">
+<% end %>
+
+
+<form action="/bumblebee/user/upload_photo" method="post">
+<input type="text" name="path" placeholder="local path to file">
+<input type="submit" value="Upload Photo">
+</form>
+
+
+<a href="/bumblebee/logout"><button type="button">Log Out</button></a>
