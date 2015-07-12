@@ -1,0 +1,26 @@
+ul{
+	list-style-type:none;
+}
+
+li:hover{
+	color:tomato;
+}
+
+img{
+	height:200px;
+	width:200px;
+}
+
+#video-bg{
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	width: auto;
+	min-width: 100%;
+	height: auto;
+	min-height: 100%;
+	z-index: -100;
+
+	background-size: cover;
+	opacity:.9;
+}
