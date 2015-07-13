@@ -1,0 +1,5 @@
+
+<p>Location:<%= @photo.location %></p>
+<img src=<%= @photo.link %> alt="an image">
+<p>Uploaded by <%= @user.username %> <em><%= ((Time.now - @photo.created_at)/86400).round %> days ago.</em><p>
+<p>Caption:<%= @photo.caption %></p>

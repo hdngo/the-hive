@@ -6,27 +6,43 @@
 </ul>
 
 <% if current_user != @user %>
-	<form action="/bumblebee/user/<%= @user.username %>/friend_request" method="post">
-	<textarea rows="8" cols="35" name="request_message" placeholder="Enter a message"></textarea>
-	<input type="submit" value="send <%= @user.username %> a friend request"> 
-	</form>
-
+	<% if !current_user.friends.include?(@user) %>
+		<form action="/bumblebee/friend_request" method="post">
+		<textarea rows="8" cols="35" name="request_message" placeholder="Enter a message"></textarea>
+		<input type="hidden" name="user_id" value="<%= @user.id %>">
+		<input type="submit" value="send <%= @user.username %> a friend request"> 
+		</form>
+	<% else %>
+		<button type="button">Friends &#9754;</button>
+	<% end %>
 <% end %>
 
 
 <p>current session user:<%= current_user.username %></p>
 
-
-<% @user.photos.each do |photo| %>
-<img src=<%= photo.link %> alt="an image">
+<% if current_user == @user %>
+	<a href="/bumblebee/user/profile/edit">edit profile</a>
 <% end %>
 
 
+<ul>
+<li><%= @user.username %>'s friends:</li>
+<% @user.friends.each do |friend|  %>
+	<li><%= friend.username %></li>
+<% end %>
+</ul>
 
+<% @user.photos.each do |photo| %>
+<a href="/photo/<%= photo.id %>"><img src=<%= photo.link %> alt="an image"></a>
+<% end %>
+
+
+<% if current_user == @user %>
 <form action="/bumblebee/user/upload_photo" method="post">
 <input type="text" name="path" placeholder="local path to file">
 <input type="submit" value="Upload Photo">
 </form>
+<% end %>
 
-
-<a href="/bumblebee/logout"><button type="button">Log Out</button></a>
+<!-- 
+<a href="/bumblebee/logout"><button type="button">Log Out</button></a> -->
