@@ -1,0 +1,12 @@
+<p>Edit Profile Information</p>
+
+<form action="/bumblebee/user/profile/edit" method="post">
+	<input type="hidden" name="_method" value="put">
+	<input type="text" name="username" value=<%= @user.username %>>
+	<input type="text" name="first_name" value=<%= @user.first_name %>>
+	<input type="text" name="last_name" value=<%= @user.last_name %>>
+	<input type="password" name="password" value=<%= @user.password %>>
+	<input type="text" name="email" value=<%= @user.email %>>
+	<input type="text" name="phone_number" value=<%= @user.phone_number %>>
+	<input type="submit" value="Update my profile">
+</form>
