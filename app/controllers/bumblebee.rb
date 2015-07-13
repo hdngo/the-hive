@@ -15,3 +15,9 @@ get '/bumblebee/logout' do
 	logout
 	redirect '/'
 end
+
+post '/bumblebee/user/:username/friend_request' do
+	@message = params[:request_message]
+	@user = Bumblebee.where(username: params[:username])
+
+end
