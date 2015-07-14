@@ -21,7 +21,7 @@
 <p>current session user:<%= current_user.username %></p>
 
 <% if current_user == @user %>
-	<a href="/bumblebee/user/profile/edit">edit profile</a>
+	<a class="button small" href="/bumblebee/user/profile/edit">edit profile</a>
 <% end %>
 
 
@@ -40,7 +40,7 @@
 <% if current_user == @user %>
 <form action="/bumblebee/user/upload_photo" method="post">
 <input type="text" name="path" placeholder="local path to file">
-<input type="submit" value="Upload Photo">
+<input class="button small" type="submit" value="Upload Photo">
 </form>
 <% end %>
 

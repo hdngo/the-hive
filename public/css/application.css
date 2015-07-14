@@ -50,7 +50,7 @@ button, input[type=submit]{
 	color:white;
 }
 
-button:hover, input[type=submit]:hover{
+button :hover, input[type=submit]:hover{
 	color:yellow;
 }
 
@@ -58,6 +58,14 @@ button:hover, input[type=submit]:hover{
 button:focus, input:focus{
 	outline:none;
 }
+
+button .small, .button.small{
+	background-color:black;
+}
+
+button .small:hover, .button.small:hover{
+	color:yellow;
+	}
 
 input{
 	display:block;

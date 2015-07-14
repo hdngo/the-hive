@@ -6,7 +6,15 @@
     differences in how form elements appear between Firefox and IE
     See: http://necolas.github.com/normalize.css/
   -->
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="/css/normalize.css">
+
+  <link rel="stylesheet" href="/css/foundation-normalize.css">
+
+  <link rel="stylesheet" href="/css/foundation.css">
 
   <link href="/imgs/logo.ico" rel="icon" type="image/x-icon"/>
 
@@ -17,10 +25,11 @@
   -->
   <link rel="stylesheet" href="/css/application.css">
 
-
-
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
   <script src="/js/application.js"></script>
+
+  <script src="/js/vendor/modernizr.js"></script>
 
   <title></title>
 </head>
@@ -28,18 +37,26 @@
   
     <% if logged_in? %>
     <div>
-    <a href="/bumblebee/user/<%= current_user.username %>"><button>Home</button></a>  
+    <a class="button small" href="/bumblebee/user/<%= current_user.username %>">Home</a>  
     <form action="/search" method="post" style="display:inline-block">
       <input type="search" name="search_request" style="display:inline-block">
-      <input class="submit" type="submit" value="Search" style="display:inline-block">
+      <input class="button small" type="submit" value="Search" style="display:inline-block">
     </form>
-    <a href="/gallery"><button style="display:inline-block">Photo Gallery</button></a>
-    <a href="/bumblebee/logout"><button type="button" style="display:inline-block">Log Out</button></a>
+    <a class="button small" href="/gallery" style="display:inline-block">Photo Gallery</a>
+    <a class="button small" href="/bumblebee/logout" style="display:inline-block">Log Out</a>
     </div>
     <% end %>
 
 
   <%= yield %>
 
+<script src="/js/vendor/jquery.js"></script>
+<script src="/js/vendor/fastclick.js"></script>
+
+  <script src="js/vendor/jquery.js"></script>
+  <script src="js/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
 </body>
 </html>

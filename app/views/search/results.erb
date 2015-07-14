@@ -1,7 +1,11 @@
-<%= "your search results" %>
+
 
 <ul>
+<li><%= "Your search results:" %></li>
 <% @results.each do |result| %>
 	<a href="/bumblebee/user/<%= result.username %>"><li><%= result.username %></li></a>
 <% end %>
+<% if @results.empty? %>
+<li>No results found.</li>
+	<% end %>
 </ul>
