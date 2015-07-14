@@ -26,18 +26,20 @@
 </head>
 <body>
   
-    <% if logged_in? %>    
-    <form action="/search" method="post">
-      <input type="search" name="search_request">
-      <input class="submit" type="submit" value="Search">
+    <% if logged_in? %>
+    <div>
+    <a href="/bumblebee/user/<%= current_user.username %>"><button>Home</button></a>  
+    <form action="/search" method="post" style="display:inline-block">
+      <input type="search" name="search_request" style="display:inline-block">
+      <input class="submit" type="submit" value="Search" style="display:inline-block">
     </form>
+    <a href="/gallery"><button style="display:inline-block">Photo Gallery</button></a>
+    <a href="/bumblebee/logout"><button type="button" style="display:inline-block">Log Out</button></a>
+    </div>
     <% end %>
 
 
   <%= yield %>
 
-  <% if logged_in? %> 
-  <a href="/bumblebee/logout"><button type="button">Log Out</button></a>
-  <% end %> 
 </body>
 </html>
