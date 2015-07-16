@@ -1,0 +1,11 @@
+<% if @errors %>
+	<% @errors.each do |error| %>
+		<p><%= error %></p>
+	<% end %>
+<% end %>
+
+<form action="/messages" method="post">
+	<input type="text" name="recipient_username" placeholder="recipient username">
+	<textarea name="content" placeholder="enter a message"></textarea>
+	<input type="submit" value="Submit">
+</form>

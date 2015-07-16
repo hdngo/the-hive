@@ -4,22 +4,45 @@
 </video> -->
 
 
+    <nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+    <% if logged_in? %>
+      <h1><a href="/bumblebee/user/<%= current_user.username %>">theHive</a></h1>
+      <% else %>
+      <h1><a href="/">theHive</a></h1>
+    <% end %>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
 
-<div id="home">
-	<h1><%= "Bumble Bumble" %></h1>
-</div>
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li class="has-dropdown">
+        <a href="/login">Login</a>
+        <ul class="dropdown">
+          <li><a href="#">First link in dropdown</a></li>
+          <li><a href="#">Active link in dropdown</a></li>
+        </ul>
+      </li>
+      <% if logged_in? %>
+      <li><a href="/bumblebee/logout">Log Out</a></li>
+      <% else %>
+        <li><a href="/signup">Sign Up</a></li>
+      <% end %>
+      
+    </ul>
+
+    <!-- Left Nav Section -->
+    <!-- <ul class="left">
+      <li><a href="#">Left Nav Button</a></li>
+    </ul> -->
+  </section>
+</nav>
+    
 
 
-<div id="mini-menu">
-	<ul class="button-group">
-		<li>
-			<a href="/login" class="button small">
-			Log In</a>
-		</li>
-		<li>
-			<a href="/signup" class="button small">Sign Up</a>
-		</li>
-	</ul>
-</div>
 
 

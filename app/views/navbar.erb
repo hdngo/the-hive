@@ -1,0 +1,28 @@
+<% if logged_in? %>
+    <div class="icon-bar five-up" role="navigation">
+      <a class="item" role="button" tabindex="0" aria-label="home">
+        <i class="fi-home"></i>
+      </a>
+      <a class="item" role="button" tabindex="0" aria-label="Bookmark">
+        <i class="fi-torso"></i>
+      </a>
+      <a class="item" role="button" tabindex="0" aria-label="Information">
+        <i class="fi-camera"></i>
+      </a>
+      <a class="item" role="button" tabindex="0" aria-label="Mail">
+        <i class="fi-comment-quotes"></i>
+      </a>
+      <a class="item" role="button" tabindex="0" aria-label="Like">
+        <i class="fi-foot"></i>
+      </a>
+    </div>
+    <div>
+    <a class="button small" href="/bumblebee/user/<%= current_user.username %>">Home</a>  
+    <form action="/search" method="post" style="display:inline-block">
+      <input type="search" name="search_request" style="display:inline-block">
+      <input class="button small" type="submit" value="Search" style="display:inline-block">
+    </form>
+    <a class="button small" href="/gallery" style="display:inline-block">Photo Gallery</a>
+    <a class="button small" href="/bumblebee/logout" style="display:inline-block">Log Out</a>
+    </div>
+    <% end %>

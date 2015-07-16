@@ -15,11 +15,13 @@
   <link rel="stylesheet" href="/css/foundation-normalize.css">
 
   <link rel="stylesheet" href="/css/foundation.css">
+  <link href='http://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/foundation-icons.css">
 
   <link href="/imgs/logo.ico" rel="icon" type="image/x-icon"/>
 
   <!-- abeezee font -->
-  <link href='http://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet' type='text/css'>
+  
   <!--
     application.css is where you put your styles
   -->
@@ -34,21 +36,28 @@
   <title></title>
 </head>
 <body>
-  
-    <% if logged_in? %>
+
+
+
+
+
+    
+
+
+  <%= yield %>
+
+
+
     <div>
-    <a class="button small" href="/bumblebee/user/<%= current_user.username %>">Home</a>  
+   
+    <% if logged_in? %>
     <form action="/search" method="post" style="display:inline-block">
       <input type="search" name="search_request" style="display:inline-block">
       <input class="button small" type="submit" value="Search" style="display:inline-block">
     </form>
     <a class="button small" href="/gallery" style="display:inline-block">Photo Gallery</a>
-    <a class="button small" href="/bumblebee/logout" style="display:inline-block">Log Out</a>
     </div>
     <% end %>
-
-
-  <%= yield %>
 
 <script src="/js/vendor/jquery.js"></script>
 <script src="/js/vendor/fastclick.js"></script>

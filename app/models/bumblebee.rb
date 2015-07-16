@@ -6,7 +6,7 @@ class Bumblebee < ActiveRecord::Base
 	validates :username, uniqueness: true, presence: true
 	validates :email, uniqueness: true, presence: true
 	validates :first_name, presence: true
-	validates :last_name, uniqueness: true
+	validates :last_name, presence: true
 	validates :password_hash, uniqueness: true
   has_many :photos
 
@@ -18,6 +18,8 @@ class Bumblebee < ActiveRecord::Base
   	foreign_key: "friend_id",
   	class_name: "Friendship"
 	has_many :inverse_friends, through: :inverse_friendships, source: :bumblebee
+
+	has_many :messages
 	
 
 	def password
