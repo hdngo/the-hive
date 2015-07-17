@@ -23,7 +23,8 @@ end
 
 get '/messages' do
 	#show all messages
-	# erb :"messages/index"
+	@messages = current_user.messages
+	erb :"messages/index"
 end
 
 get '/messages/:id' do

@@ -1,5 +1,5 @@
 <% if logged_in? %>
-    <div class="icon-bar four-up" role="navigation">
+    <!-- <div class="icon-bar four-up" role="navigation">
       <a class="item" role="button" tabindex="0" aria-label="Home" href="/bumblebee/user/<%= current_user.username %>">
         <i class="fi-home"></i>
       </a>
@@ -12,7 +12,20 @@
       <a class="item" role="button" tabindex="0" aria-label="Logout" href="/bumblebee/logout">
         <i class="fi-foot"></i>
       </a>
-    </div>
+    </div> -->
+
+    <a class="item" role="button" tabindex="0" aria-label="Home" href="/bumblebee/user/<%= current_user.username %>">
+        <i class="fi-home"></i>home
+      </a>
+      <a class="item" role="button" tabindex="0" aria-label="Information" href="/gallery">
+        <i class="fi-camera"></i>gallery
+      </a>
+      <a class="item" role="button" tabindex="0" aria-label="Messages">
+        <i class="fi-comment-quotes"></i>messages
+      </a>
+      <a class="item" role="button" tabindex="0" aria-label="Logout" href="/bumblebee/logout">
+        <i class="fi-foot"></i>logout
+      </a>
     <% end %>
 
 <ul>
