@@ -41,6 +41,11 @@ a{
 	text-decoration: none;
 }
 
+a:hover{
+  text-decoration:none;
+
+}
+
 button, input[type=submit]{
 	background-color:black;
 	border-right:1px solid white;
@@ -98,6 +103,10 @@ img:hover{
 
 	background-size: cover;
 	opacity:.9;
+}
+
+.nav.navbar-nav.float-right{
+  float:right;
 }
 
 /*hexagon shtuff*/
