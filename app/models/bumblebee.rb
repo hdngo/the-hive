@@ -8,7 +8,8 @@ class Bumblebee < ActiveRecord::Base
 	validates :first_name, presence: true
 	validates :last_name, presence: true
 	validates :password_hash, uniqueness: true
-  has_many :photos
+  
+
 
   # i don't like the inverse friendship part, but apparently its the way of implementing mutual friendships..
   has_many :friendships
@@ -19,7 +20,16 @@ class Bumblebee < ActiveRecord::Base
   	class_name: "Friendship"
 	has_many :inverse_friends, through: :inverse_friendships, source: :bumblebee
 
+	has_many :photos
+
 	has_many :messages
+	has_many :conversations, 
+		through: :messages,
+		source: :recipient
+	has_many :inverse_messages,
+		foreign_key: "recipient_id", 
+		class_name: "Message"
+	has_many :inverse_conversationss, through: :inverse_messages, source: :bumblebee
 	
 
 	def password

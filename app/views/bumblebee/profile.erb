@@ -35,18 +35,15 @@
 	<% end %>
 <% end %>
 
-
-<p>current session user:<%= current_user.username %></p>
-
 <% if current_user == @user %>
 	<a class="button small" href="/bumblebee/user/profile/edit">edit profile</a>
 <% end %>
 
 
 <ul>
-<li><%= @user.username %>'s friends:</li>
+<li><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</li>
 <% @user.friends.each do |friend|  %>
-	<li><%= friend.username %></li>
+	<a href="/bumblebee/user/<%= friend.username %>"><li><%= full_name(friend) + " (" + friend.username + ")"%></li></a>
 <% end %>
 </ul>
 
