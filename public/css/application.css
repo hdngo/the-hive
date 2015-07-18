@@ -8,23 +8,27 @@
 }
 
 html{
-	height:100%;
+
 }
 
 body{
-	width:100%;
-	/*display:table;*/
-	height:100%;
+  
 }
 
+/*body{
+	width:100%;
+	display:table;
+	height:100%;
+}*/
+/*
 #home{
-	/*display:table-cell;*/
+	display:table-cell;
 	vertical-align:middle;
 	margin:0 auto;
 	text-align:center;
-}
+}*/
 
-#mini-menu{
+/*#mini-menu{
 	position:fixed;
 	top:25%;
 	left:0;
@@ -34,7 +38,7 @@ body{
 	display:inline-block;
 	margin:0;
 	float:left;
-}
+}*/
 
 a{
 	color:black;
@@ -43,7 +47,7 @@ a{
 
 a:hover{
   text-decoration:none;
-
+  color:yellow;
 }
 
 button, input[type=submit]{
@@ -72,14 +76,14 @@ button .small:hover, .button.small:hover{
 	color:yellow;
 	}
 
-input{
+/*input{
 	display:block;
 	margin: 5px 0;
-}
+}*/
 
-ul{
+/*ul{
 	list-style-type:none;
-}
+}*/
 
 
 img{
@@ -90,7 +94,7 @@ img{
 img:hover{
 	opacity: .3;
 }
-
+/*
 #video-bg{
 	position: fixed;
 	right: 0;
@@ -103,7 +107,7 @@ img:hover{
 
 	background-size: cover;
 	opacity:.9;
-}
+}*/
 
 .nav.navbar-nav.float-right{
   float:right;
