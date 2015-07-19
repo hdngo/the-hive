@@ -1,62 +1,116 @@
-<% if logged_in? %>
+<div class="body-div">
+  <% if logged_in? %>
+
+  <a class="item" role="button" tabindex="0" aria-label="Home" href="/bumblebee/user/<%= current_user.username %>">
+    <i class="fi-home"></i>home
+  </a>
+  <a class="item" role="button" tabindex="0" aria-label="Information" href="/gallery">
+    <i class="fi-camera"></i>gallery
+  </a>
+  <a class="item" role="button" tabindex="0" aria-label="Messages">
+    <i class="fi-comment-quotes"></i>messages
+  </a>
+  <a class="item" role="button" tabindex="0" aria-label="Logout" href="/bumblebee/logout">
+    <i class="fi-foot"></i>logout
+  </a>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <ul class="list-unstyled">
+        <li><%= @user.username %>'s Profile</li>
+        <li><%= @user.first_name%> <%=@user.last_name %></li>
+        <li>email: <%= @user.email %></li>
+        <li>phone: <%= @user.phone_number %></li>
+        <% if current_user != @user %>
+        <% if !current_user.friends.include?(@user) %>
+        <form action="/bumblebee/friend_request" method="post">
+          <input type="hidden" name="user_id" value="<%= @user.id %>">
+          <input type="submit" value="send <%= @user.username %> a friend request"> 
+        </form>
+        <% else %>
+        <li style="display:inline-block"><button class="btn btn-warning" type="button">Friends</button></li>
+        <li style="display:inline-block"><form>
+  <!-- <div class="form-group"> -->
     
-    <a class="item" role="button" tabindex="0" aria-label="Home" href="/bumblebee/user/<%= current_user.username %>">
-        <i class="fi-home"></i>home
-      </a>
-      <a class="item" role="button" tabindex="0" aria-label="Information" href="/gallery">
-        <i class="fi-camera"></i>gallery
-      </a>
-      <a class="item" role="button" tabindex="0" aria-label="Messages">
-        <i class="fi-comment-quotes"></i>messages
-      </a>
-      <a class="item" role="button" tabindex="0" aria-label="Logout" href="/bumblebee/logout">
-        <i class="fi-foot"></i>logout
-      </a>
+  <button type="submit" class="btn btn-warning">Message</button>
+</form></li>
+        <% end %>
+        <% else %>
+        <a class="button small" href="/bumblebee/user/profile/edit">edit profile</a>
+        <% end %>
+      </ul>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+  <!-- <ul class=> -->
+  <p><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</p>
+  <div class="row col-md-8 col-md-offset-2">
+    <% @user.friends.each do |friend|  %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <a href="/bumblebee/user/<%= friend.username %>"><img src="/user_imgs/monkey.jpeg" alt="..."></a>
+        <div class="caption">
+          <h5 class="center-text"><%= full_name(friend) + " (" + friend.username + ")"%></h5>
+          <% if current_user != @user %>
+          <% if current_user.friends.include?(friend) || current_user == friend %>
+          <p class="center-text"><a href="#" class="btn btn-primary" role="button">Friends</a></p>
+          <% else %>
+          <p class="center-text"><a href="#" class="btn btn-primary" role="button">Add Friend</a></p>
+          <% end %>
+          <% end %>
+          <!--  <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+        </div>
+      </div>
+    </div>
     <% end %>
-
-<ul>
-<li><%= @user.username %>'s Profile</li>
-<li><%= @user.first_name%> <%=@user.last_name %></li>
-<li>email: <%= @user.email %></li>
-<li>phone: <%= @user.phone_number %></li>
-</ul>
-
-<% if current_user != @user %>
-	<% if !current_user.friends.include?(@user) %>
-		<form action="/bumblebee/friend_request" method="post">
-		<textarea rows="8" cols="35" name="request_message" placeholder="Enter a message"></textarea>
-		<input type="hidden" name="user_id" value="<%= @user.id %>">
-		<input type="submit" value="send <%= @user.username %> a friend request"> 
-		</form>
-	<% else %>
-		<button type="button">Friends &#9754;</button>
-		<a href='/messages/new'><button type="button">send a message</button></a>
-	<% end %>
-<% end %>
-
-<% if current_user == @user %>
-	<a class="button small" href="/bumblebee/user/profile/edit">edit profile</a>
-<% end %>
+  </div>
 
 
-<ul>
-<li><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</li>
-<% @user.friends.each do |friend|  %>
-	<a href="/bumblebee/user/<%= friend.username %>"><li><%= full_name(friend) + " (" + friend.username + ")"%></li></a>
-<% end %>
-</ul>
+  <div class="row col-md-8 col-md-offset-2">
+    <p> test photos (not uploaded ones) </p>
+    <div class="col-xs-6 col-md-4">
+      <a href="#" class="thumbnail">
+        <img src="/user_imgs/balloons.jpeg" alt="...">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <a href="#" class="thumbnail">
+        <img src="/user_imgs/balloons.jpeg" alt="...">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <a href="#" class="thumbnail">
+        <img src="/user_imgs/balloons.jpeg" alt="...">
+      </a>
+    </div>
+    <div class="col-xs-6 col-md-4">
+      <a href="#" class="thumbnail">
+        <img src="/user_imgs/balloons.jpeg" alt="...">
+      </a>
+    </div>  
+  </div>
 
-<% @user.photos.each do |photo| %>
-<a href="/photo/<%= photo.id %>"><img src=<%= photo.link %> alt="an image"></a>
-<% end %>
+  <% @user.photos.each do |photo| %>
+  <a href="/photo/<%= photo.id %>"><img src=<%= photo.link %> alt="an image"></a>
+  <% end %>
 
 
-<% if current_user == @user %>
-<form action="/bumblebee/user/upload_photo" method="post">
-<input type="text" name="path" placeholder="local path to file">
-<input class="button small" type="submit" value="Upload Photo">
-</form>
-<% end %>
+  <% if current_user == @user %>
+  <form action="/bumblebee/user/upload_photo" method="post">
+    <input type="text" name="path" placeholder="local path to file">
+    <input class="button small" type="submit" value="Upload Photo">
+  </form>
+  <% end %>
 
 <!-- 
-<a href="/bumblebee/logout"><button type="button">Log Out</button></a> -->
+  <a href="/bumblebee/logout"><button type="button">Log Out</button></a> -->
+</div>

@@ -1,3 +1,4 @@
+<div class="body-div">
 <% @messages.each do |message| %>
 	<li> <%= message.content %></li>
 	<% sender = Bumblebee.find_by(id: message.bumblebee_id) %>
@@ -5,3 +6,4 @@
 	<p> received by: <%= recipient.username %></p>
 	<p> sent by: <%= sender.username %></p>
 <% end %>
+</div>

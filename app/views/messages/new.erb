@@ -1,11 +1,25 @@
+<div class="body-div">
 <% if @errors %>
 	<% @errors.each do |error| %>
 		<p><%= error %></p>
 	<% end %>
 <% end %>
 
+
+<div class="body-div">
+	<div class="col-sm-4 col-md-4 col-sm-offset-4 col-md-offset-4 panel panel-default">
+	<div class="panel-body">
 <form action="/messages" method="post">
-	<input type="text" name="recipient_username" placeholder="recipient username">
-	<textarea name="content" placeholder="enter a message"></textarea>
-	<input type="submit" value="Submit">
+	<label><span class="white">Recipient's Username</span></label>
+	<div class="form-group">
+	<input class="form-control" type="text" name="recipient_username" placeholder="recipient username">
+	</div>
+	<div class="form-group">
+	<label><span class="white">Message</span></label>
+	<input class="form-control" name="content" placeholder="enter a message">
+	</div>
+	<input class="form-control" type="submit" value="Submit">
 </form>
+</div>
+</div>
+</div>
