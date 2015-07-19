@@ -90,9 +90,9 @@
             </div>
             <button type="submit" class="btn btn-warning">Search</button>
           </form>
-          <li><a href="/messages">Messages</a></li>
-          <li><a href="/gallery">Gallery</a></li>
-          <li><a href="/bumblebee/logout">Logout</a></li>
+          <li><a href="/bumblebee/<%= current_user.username %>/messages"><span class="white">Messages</span></a></li>
+          <li><a href="/gallery"><span class="white">Gallery</span></a></li>
+          <li><a href="/bumblebee/logout"><span class="white">Logout</span></a></li>
           <!-- end search -->
           <% else %>
           
@@ -117,16 +117,7 @@
 
   <%= yield %>
 
-  <div>
-
-    <% if logged_in? %>
-    <form action="/search" method="post" style="display:inline-block">
-      <input type="search" name="search_request" style="display:inline-block">
-      <input class="button small" type="submit" value="Search" style="display:inline-block">
-    </form>
-    <a class="button small" href="/gallery" style="display:inline-block">Photo Gallery</a>
-  </div>
-  <% end %>
+  
 
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

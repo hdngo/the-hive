@@ -1,6 +1,6 @@
 post '/bumblebee/user/upload_photo' do
 	@link = params[:path]	
-	@photo = Photo.create(link: "/user_imgs/" + params[:path], bumblebee_id: current_user.id)
+	@photo = Photo.create(link: params[:path], bumblebee_id: current_user.id)
 	redirect "/bumblebee/user/#{current_user.username}"
 end
 
@@ -24,7 +24,7 @@ end
 
 put '/photo/:id/edit' do
 	@photo = Photo.find_by(id: params[:id])
-	@photo.update_attributes(location: params[:location], link: @photo.link, caption: params[:caption], bumblebee_id: current_user.id)
+	@photo.update_attributes(link: @photo.link, caption: params[:caption], bumblebee_id: current_user.id)
 	@photo.save!
 	redirect "/photo/#{@photo.id}"
 end

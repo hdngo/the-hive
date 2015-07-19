@@ -5,15 +5,11 @@ end
 post '/messages' do
 	#hey create a new message
 	@recipient = Bumblebee.find_by(username: params[:recipient_username])
-	# @sender_id = current_user.id
-	@message = Message.create(recipient_id: @recipient.id, content: params[:content], bumblebee_id: current_user.id)
-		#add message to user messages
-		# current_user.messages << current_user.inverse_messages.last
+	@message = Message.create(recipient_id: @recipient.id, content: params[:content])
 		p "THIS IS THE #{current_user.id}"
-		# the message created is added to the user who sends it, then the recipient receives it as an inverse message, which we add to their messages
 		
-		@recipient.messages << @recipient.inverse_messages.last
-		current_user.messages << @recipient.messages.last
+		
+		current_user.messages << @message
 
 		redirect "/bumblebee/user/#{@recipient.username}"
 	# else
@@ -21,13 +17,22 @@ post '/messages' do
 	# end
 end
 
-get '/messages' do
+delete '/messages' do
+	x= params[:message_id]
+	# p x === 2
+	delete_message = Message.find(params[:message_id])
+	# mess.destroy()
+	# Conversation.where()
+	redirect "bumblebee/#{current_user.username}/messages"
+
+end
+
+get '/bumblebee/:username/messages' do
 	#show all messages
-	@messages = current_user.messages
+	@conversations = Bumblebee.find_by(username: params[:username])
+	@messages = current_user.chat_messages
 	erb :"messages/index"
 end
 
-get '/messages/:id' do
-	#get a specific message
-end
+
 

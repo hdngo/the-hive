@@ -1,5 +1,9 @@
 <div class="body-div">
-<ul class="hexagons clr">
+
+<h2 class="center-text">EXPLORE THE HONEYCOMBS</h2>
+
+<div id="gallery-div">
+<ul class="hexagons clr" id="gallery">
 <% @gallery.each do |photo| %>
 	
 	<li>
@@ -7,7 +11,9 @@
 			<img src=<%= photo.link %> alt="an image">
 		</div>
 	</li>
+	
 
 <% end %>
 </ul>
+</div>
 </div>

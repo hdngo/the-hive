@@ -6,11 +6,8 @@ class Bumblebee < ActiveRecord::Base
   include Gravtastic
   gravtastic
 
-	validates :username, uniqueness: true, presence: true
-	validates :email, uniqueness: true, presence: true
-	validates :first_name, presence: true
-	validates :last_name, presence: true
-	validates :password_hash, uniqueness: true
+	
+	
   
 
 
@@ -26,13 +23,11 @@ class Bumblebee < ActiveRecord::Base
 	has_many :photos
 
 	has_many :messages
-	has_many :conversations, 
-		through: :messages,
-		source: :recipient
+	has_many :conversations, through: :messages, source: :recipient
 	has_many :inverse_messages,
 		foreign_key: "recipient_id", 
 		class_name: "Message"
-	has_many :inverse_conversationss, through: :inverse_messages, source: :bumblebee
+	has_many :inverse_conversations, through: :inverse_messages, source: :bumblebee
 	
 
 	def password
@@ -43,4 +38,20 @@ class Bumblebee < ActiveRecord::Base
 		@password = Password.create(new_password)
 		self.password_hash = @password
 	end
+
+	def chat_messages
+		@chat_messages = (self.messages + self.inverse_messages).uniq
+		@chat_messages.sort_by {|chat_message| chat_message.created_at}.reverse!
+	end
+
+	def delete_message(message_id)
+		deleted_message = self.messages.where("id = #{message_id}")
+		p deleted_message
+		
+	end
+
+	# def accepted_friends
+	# 	@accepted_friends = self.friendships
+	# end
+
 end

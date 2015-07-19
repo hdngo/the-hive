@@ -1,9 +1,30 @@
 <div class="body-div">
+
+<ul class="list-group col-xs-6 col-xs-offset-3" class="messages">
+<p> Your messages: </p>
 <% @messages.each do |message| %>
-	<li> <%= message.content %></li>
 	<% sender = Bumblebee.find_by(id: message.bumblebee_id) %>
 	<% recipient = Bumblebee.find_by(id: message.recipient_id) %>
-	<p> received by: <%= recipient.username %></p>
-	<p> sent by: <%= sender.username %></p>
+	<!-- <a href="#"> -->
+	<li class="list-group-item message col-xs-12">
+
+	<p class=" col-xs-12 col-sm-8 col-md-8"><%= message.content %></p>
+	
+	<form class="col-xs-12 col-sm-4 col-md-4" action="/messages" method="post">
+	<input type="hidden" name="message_id" value=<%= message.id.to_i %>>
+	<input type="hidden" name="_method" value="delete">
+		<input class="btn btn-warning col-xs-12 col-md-12" type="submit" value="Delete">
+	</form>
+
+	
+	</li>
+	<!-- </a> -->
+	<% if sender == current_user %>
+	<p><em>Sent to <%= recipient.username %> <%= ((Time.now - message.created_at)/86400).round %> day(s) ago.</em></p>
+	<% else %>
+	<p ><em>From <%= sender.username %> <%= ((Time.now - message.created_at)/86400).round %> day(s) ago.</em></p>
+	<% end %>
 <% end %>
+
 </div>
+

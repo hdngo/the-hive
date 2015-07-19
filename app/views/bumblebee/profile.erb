@@ -3,7 +3,8 @@
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
       <ul class="list-unstyled">
-        <li><img class="profile-pic" src="<%= @user.gravatar_url %>"</li>
+        <li>
+        <img class="profile-pic" src="<%= @user.gravatar_url %>"</li>
         <li><%= @user.username %>'s Profile</li>
         <li><%= @user.first_name%> <%=@user.last_name %></li>
         <% if current_user != @user %>
@@ -14,7 +15,8 @@
         </form>
         <% else %>
         <li style="display:inline-block"><button class="btn btn-warning" type="button">Friends</button></li>
-        <li style="display:inline-block"><form>
+        <li style="display:inline-block">
+        <form action="/messages/new" method="get">
   <!-- <div class="form-group"> -->
     
   <button type="submit" class="btn btn-warning">Message</button>
@@ -36,8 +38,9 @@
 
 
   <!-- <ul class=> -->
-  <p><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</p>
+  
   <div class="row col-md-8 col-md-offset-2">
+  <p><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</p>
     <% @user.friends.each do |friend|  %>
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail friend-thumbnail">
@@ -60,40 +63,23 @@
 
 
   <div class="row col-md-8 col-md-offset-2">
-    <p> test photos (not uploaded ones) </p>
-    <div class="col-xs-6 col-md-4">
-      <a href="#" class="thumbnail">
-        <img src="/user_imgs/balloons.jpeg" alt="...">
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-4">
-      <a href="#" class="thumbnail">
-        <img src="/user_imgs/balloons.jpeg" alt="...">
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-4">
-      <a href="#" class="thumbnail">
-        <img src="/user_imgs/balloons.jpeg" alt="...">
-      </a>
-    </div>
-    <div class="col-xs-6 col-md-4">
-      <a href="#" class="thumbnail">
-        <img src="/user_imgs/balloons.jpeg" alt="...">
-      </a>
-    </div>  
-  </div>
-
-  <% @user.photos.each do |photo| %>
-  <a href="/photo/<%= photo.id %>"><img src=<%= photo.link %> alt="an image"></a>
-  <% end %>
-
-
+  <p class="col-xs-4"> real photos</p>
   <% if current_user == @user %>
-  <form action="/bumblebee/user/upload_photo" method="post">
-    <input type="text" name="path" placeholder="local path to file">
-    <input class="button small" type="submit" value="Upload Photo">
+  <form class="col-xs-4 col-xs-offset-4" action="/bumblebee/user/upload_photo" method="post">
+    <input class="form-control col-xs-1" id="photo-form" type="text" name="path" placeholder="local path to file">
+    <input class="btn btn-warning col-xs-4" type="submit" value="Upload">
   </form>
   <% end %>
+    <% @user.photos.each do |photo| %>
+    <div class="col-xs-4 col-md-4">
+      <a href="/photo/<%= photo.id %>" class="thumbnail">
+        <img src=<%= photo.link %> alt="...">
+      </a>
+    </div>
+    <% end %>
+  </div>
+
+  
 
 <!-- 
   <a href="/bumblebee/logout"><button type="button">Log Out</button></a> -->
