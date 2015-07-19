@@ -24,6 +24,17 @@ body{
   border-color:orange;
 }
 
+.profile-pic, .friend-pic{
+  height:150px;
+  width:150px;
+  border-radius:50%;
+  border:2px dashed tomato;
+}
+
+.friend-thumbnail{
+  border:none;
+}
+
 
 #background{
   background: #000 url('/imgs/greycombs.jpg') center center;

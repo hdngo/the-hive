@@ -26,8 +26,8 @@
 </head>
 <body>
   <% if !logged_in? %>
-    <div id="background">
-  <% end %>
+  <div id="background">
+    <% end %>
     <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -42,17 +42,15 @@
           <% else %>
           <a class="navbar-brand" href="/"><span class="white">the Hive</span></a>
           <% end %>
-          <ul class="nav navbar-nav">
-        
-          </ul>
+          
         </li>
       </ul>
-        </div>
+    </div>
 
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav float-right">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav float-right">
 
         <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
@@ -68,18 +66,9 @@
             <li><a href="#">One more separated link</a></li>
           </ul>
         </li> -->
+
       </ul> 
-      <% if !logged_in? %>
-      <form class="navbar-form navbar-left" role="search" action="/bumblebee/login" method="post">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="username" name="username">
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" placeholder="password" name="password">
-        </div>
-        <button type="submit" class="btn btn-default">Login</button>
-      </form>
-      <% end %>
+      
       <ul class="nav navbar-nav navbar-right">
       <!-- <li >
       <a href="/login" role="button" aria-haspopup="true" aria-expanded="false">Login </a> -->
@@ -92,11 +81,31 @@
             <li><a href="#">Separated link</a></li>
           </ul> -->
           <!-- </li> -->
+          
+          <% if logged_in? %>
+          <!-- search -->
+          <form class="navbar-form navbar-left" role="search" action="/search" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="search for..." name="search_request">
+            </div>
+            <button type="submit" class="btn btn-warning">Search</button>
+          </form>
           <li><a href="/messages">Messages</a></li>
           <li><a href="/gallery">Gallery</a></li>
-          <% if logged_in? %>
           <li><a href="/bumblebee/logout">Logout</a></li>
+          <!-- end search -->
           <% else %>
+          
+          <form class="navbar-form navbar-left" role="search" action="/bumblebee/login" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="username" name="username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-warning">Login</button>
+          </form>
+
           <li><a href="/signup">Signup</a></li>
           <% end %>
         </ul>
