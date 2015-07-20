@@ -5,11 +5,13 @@ end
 post '/messages' do
 	#hey create a new message
 	@recipient = Bumblebee.find_by(username: params[:recipient_username])
-	@message = Message.create(recipient_id: @recipient.id, content: params[:content])
+	@message = Message.create(recipient_id: @recipient.id, content: params[:content], bumblebee_id: current_user.id)
 		p "THIS IS THE #{current_user.id}"
 		
 		
 		current_user.messages << @message
+		# new
+		@recipient.messages << @message
 
 		redirect "/bumblebee/user/#{@recipient.username}"
 	# else
@@ -18,9 +20,9 @@ post '/messages' do
 end
 
 delete '/messages' do
-	x= params[:message_id]
-	# p x === 2
-	delete_message = Message.find(params[:message_id])
+		# p x === 2s
+	delete_message = Conversation.where(bumblebee_id: current_user.id, message_id: params[:message_id]).first
+	delete_message.destroy
 	# mess.destroy()
 	# Conversation.where()
 	redirect "bumblebee/#{current_user.username}/messages"

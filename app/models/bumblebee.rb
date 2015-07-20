@@ -22,13 +22,17 @@ class Bumblebee < ActiveRecord::Base
 
 	has_many :photos
 
-	has_many :messages
-	has_many :conversations, through: :messages, source: :recipient
-	has_many :inverse_messages,
-		foreign_key: "recipient_id", 
-		class_name: "Message"
-	has_many :inverse_conversations, through: :inverse_messages, source: :bumblebee
+	# old model
+	# has_many :messages
+	# has_many :conversations, through: :messages, source: :recipient
+	# has_many :inverse_messages,
+	# 	foreign_key: "recipient_id", 
+	# 	class_name: "Message"
+	# has_many :inverse_conversations, through: :inverse_messages, source: :bumblebee
 	
+	# remodel
+	has_many :conversations
+	has_many :messages, through: :conversations
 
 	def password
 		@password ||= Password.new(password_hash)
@@ -40,15 +44,10 @@ class Bumblebee < ActiveRecord::Base
 	end
 
 	def chat_messages
-		@chat_messages = (self.messages + self.inverse_messages).uniq
+		@chat_messages = (self.messages)
 		@chat_messages.sort_by {|chat_message| chat_message.created_at}.reverse!
 	end
 
-	def delete_message(message_id)
-		deleted_message = self.messages.where("id = #{message_id}")
-		p deleted_message
-		
-	end
 
 	# def accepted_friends
 	# 	@accepted_friends = self.friendships
