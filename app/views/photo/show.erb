@@ -1,0 +1,17 @@
+
+<div class="body-div">
+<div class="col-xs-8 col-xs-offset-2">
+<a href="#" class="thumbnail">
+<img class="single-photo" src=<%= @photo.link %> alt="an image">
+<p>Uploaded by <%= @user.username %> <em><%= ((Time.now - @photo.created_at)/86400).round %> day(s) ago.</em></p>
+<p>Caption:<%= @photo.caption %></p>
+</a>
+
+<% if current_user == @user %>
+	<a href="/photo/<%= @photo.id %>/edit"><button>Edit Photo</button></a>
+<% end %>
+</div>
+</div>
+
+
+   

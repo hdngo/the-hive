@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/css/normalize.css">
+
+  <link href='http://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet' type='text/css'>
+
+  <link href="/imgs/logo.ico" rel="icon" type="image/x-icon"/>
+
+  <!-- abeezee font -->
+  <link href='http://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet' type='text/css'>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/css/application.css">
+
+  
+
+  <!--<script src="/js/vendor/modernizr.js"></script>-->
+
+  <title>theHive</title>
+</head>
+<body>
+  <% if !logged_in? %>
+  <div id="background">
+    <% end %>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <% if logged_in? %>
+          <a class="navbar-brand" href="/bumblebee/user/<%= current_user.username %>"><span class="white">the Hive</span></a>
+          <% else %>
+          <a class="navbar-brand" href="/"><span class="white">the Hive</span></a>
+          <% end %>
+          
+        </li>
+      </ul>
+    </div>
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav float-right">
+
+        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li> -->
+
+      </ul> 
+      
+      <ul class="nav navbar-nav navbar-right">
+      <!-- <li >
+      <a href="/login" role="button" aria-haspopup="true" aria-expanded="false">Login </a> -->
+      <!-- mess around with line -->
+          <!-- <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul> -->
+          <!-- </li> -->
+          
+          <% if logged_in? %>
+          <!-- search -->
+          <form class="navbar-form navbar-left" role="search" action="/search" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="search for..." name="search_request">
+            </div>
+            <button type="submit" class="btn btn-warning">Search</button>
+          </form>
+          <li><a href="/bumblebee/<%= current_user.username %>/messages"><span class="white">Messages</span></a></li>
+          <li><a href="/gallery"><span class="white">Gallery</span></a></li>
+          <li><a href="/bumblebee/logout"><span class="white">Logout</span></a></li>
+          <!-- end search -->
+          <% else %>
+          
+          <form class="navbar-form navbar-left" role="search" action="/bumblebee/login" method="post">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="username" name="username">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-warning">Login</button>
+          </form>
+
+          <li><a href="/signup"><span class="white">Signup</span></a></li>
+          <% end %>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <!-- end navbar -->
+
+
+  <%= yield %>
+
+  
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="/js/application.js"></script>
+</div>
+</body>
+</html>

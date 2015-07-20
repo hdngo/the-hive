@@ -1,0 +1,24 @@
+<div class="body-div">
+
+<div class="col-xs-12">
+<img class="col-xs-8 col-xs-offset-2" src=<%= @photo.link %> alt="an image">
+</div>
+<div class="col-xs-4 col-xs-4 col-xs-offset-4 col-xs-offset-4 panel panel-default">
+<div class="panel-body">
+<form id="edit-photo" action="/photo/<%= @photo.id %>/edit" method="post">
+<input type="hidden" name="_method" value="put">
+<input type="hidden" name="photo_id" value=<%= @photo.id %>>
+
+<label style="display:block"><span class="white">Caption: </label>
+<input class="form-control" type="text" name="caption" value=<%= @photo.caption %>>
+<input class="btn btn-warning" type="submit" value="Update">
+</form>
+
+<% if current_user == @user %>
+	<a href="/photo/<%= @photo.id %>"><button>Cancel</button></a>
+<% end %>
+</div>
+</div>
+
+
+</div>
