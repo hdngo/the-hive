@@ -4,83 +4,107 @@
     <div class="col-md-4 col-md-offset-4">
       <ul class="list-unstyled">
         <li>
-        <img class="profile-pic" src="<%= @user.gravatar_url %>"</li>
-        <li><%= @user.username %>'s Profile</li>
-        <li><%= @user.first_name%> <%=@user.last_name %></li>
-        <% if current_user != @user %>
-        <% if !current_user.friends.include?(@user) %>
-        <form action="/bumblebee/friend_request" method="post">
-          <input type="hidden" name="user_id" value="<%= @user.id %>">
-          <input type="submit" value="send <%= @user.username %> a friend request"> 
-        </form>
-        <% else %>
-        <li style="display:inline-block"><button class="btn btn-warning" type="button">Friends</button></li>
-        <li style="display:inline-block">
-        <form action="/messages/new" method="get">
-  <!-- <div class="form-group"> -->
-    
-  <button type="submit" class="btn btn-warning">Message</button>
-</form></li>
-        <% end %>
-        <% else %>
-        <a class="btn btn-warning" href="/bumblebee/user/profile/edit">edit profile</a>
-        <% end %>
-      </ul>
-
-
-    </div>
-
-  </div>
-
-
-
-
-
-
-  <!-- <ul class=> -->
-  
-  <div class="row col-md-8 col-md-offset-2">
-  <p><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</p>
-    <% @user.friends.each do |friend|  %>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail friend-thumbnail">
-        <a href="/bumblebee/user/<%= friend.username %>"><img class="friend-pic" src="<%= friend.gravatar_url %>" alt="..."></a>
-        <div class="caption">
-          <h5 class="center-text"><%= full_name(friend) + " (" + friend.username + ")"%></h5>
+          <img class="profile-pic" src="<%= @user.gravatar_url %>"></li>
+          <li><%= @user.username %>'s Profile</li>
+          <li><%= @user.first_name%> <%=@user.last_name %></li>
           <% if current_user != @user %>
-          <% if current_user.friends.include?(friend) || current_user == friend %>
-          <p class="center-text"><a href="#" class="btn btn-primary" role="button">Friends</a></p>
+          <% if !current_user.friends.include?(@user) %>
+          <form action="/bumblebee/friend_request" method="post">
+            <input type="hidden" name="user_id" value="<%= @user.id %>">
+            <input type="submit" value="send <%= @user.username %> a friend request"> 
+          </form>
           <% else %>
-          <p class="center-text"><a href="#" class="btn btn-primary" role="button">Add Friend</a></p>
-          <% end %>
-          <% end %>
-          <!--  <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+          <li style="display:inline-block"><button class="btn btn-warning" type="button">Friends</button></li>
+          <li style="display:inline-block">
+            <form action="/messages/new" method="get">
+              <!-- <div class="form-group"> -->
+
+              <button type="submit" class="btn btn-warning">Message</button>
+            </form></li>
+            <% end %>
+            <% else %>
+            <a class="btn btn-warning" href="/bumblebee/user/profile/edit">edit profile</a>
+            <% end %>
+          </ul>
+
+
         </div>
+
       </div>
-    </div>
-    <% end %>
-  </div>
 
 
-  <div class="row col-md-8 col-md-offset-2">
-  <p class="col-xs-4"> real photos</p>
-  <% if current_user == @user %>
-  <form class="col-xs-4 col-xs-offset-4" action="/bumblebee/user/upload_photo" method="post">
-    <input class="form-control col-xs-1" id="photo-form" type="text" name="path" placeholder="local path to file">
-    <input class="btn btn-warning col-xs-4" type="submit" value="Upload">
-  </form>
-  <% end %>
-    <% @user.photos.each do |photo| %>
-    <div class="col-xs-4 col-md-4">
-      <a href="/photo/<%= photo.id %>" class="thumbnail">
-        <img src=<%= photo.link %> alt="...">
-      </a>
-    </div>
-    <% end %>
-  </div>
 
-  
 
-<!-- 
-  <a href="/bumblebee/logout"><button type="button">Log Out</button></a> -->
-</div>
+
+
+      <!-- <ul class=> -->
+
+      <div class="row col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+        <p class="col-xs-12"><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</p>
+        <% @user.friends.each do |friend|  %>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail friend-thumbnail">
+            <a href="/bumblebee/user/<%= friend.username %>"><img class="friend-pic" src="<%= friend.gravatar_url %>" alt="..."></a>
+            <div class="caption">
+              <h5 class="center-text"><%= full_name(friend) + " (" + friend.username + ")"%></h5>
+              <% if current_user != @user %>
+              <% if current_user.friends.include?(friend) || current_user == friend %>
+              <p class="center-text"><a href="#" class="btn btn-primary" role="button">Friends</a></p>
+              <% else %>
+              <p class="center-text"><a href="#" class="btn btn-primary" role="button">Add Friend</a></p>
+              <% end %>
+              <% end %>
+              <!--  <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+
+      <div class="row col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
+        <!-- <p class="col-xs-12">  -->
+          <% if @user == current_user %>
+          <p class="col-xs-12">Your photos</p>
+          <% else %>
+          <p class="col-xs-12">
+            <%= @user.username %>
+            's photos</p>
+            <% end %>
+
+            <% if @user.photos.empty? %>
+            <h5 class="col-xs-12 no-photo-msg">No photos to display. :(</h5>
+            
+            <% end %>
+            
+          </div>
+          
+          <div class="user-photos row col-xs-10 col-xs-offset-1">
+         <% unless @user.photos.empty? %>
+            <% @user.photos.each do |photo| %>
+            <div class="col-xs-6 col-md-3">
+              <a href="/photo/<%= photo.id %>" class="thumbnail">
+                <img class="photo" src=<%= photo.link %> alt="...">
+              </a>
+            </div>
+            <% end %>
+        <% end %>
+        </div>
+
+          <!-- end photo -->
+          <div class="row">
+          <% if current_user == @user %>
+            <!-- <div class="row"> -->
+            <form class="row col-xs-12 upload-photo" action="/bumblebee/user/upload_photo" method="post">
+              <div class="row">
+              <input class="form-control col-xs-4" id="photo-form" type="text" name="path" placeholder="local path to file">
+              </div>
+              <div class="row">
+              <input class="btn btn-warning col-xs-4 col-xs-offset-4" type="submit" value="Upload">
+              </div>
+            </form>
+            <% end %>
+            </div>
+        
+        </div>
+        

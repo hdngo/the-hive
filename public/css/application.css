@@ -34,9 +34,6 @@ body{
   border:none;
 }
 
-#photo-form{
-  width:auto;
-}
 
 /*.single-photo{
   height:60%;
@@ -118,12 +115,26 @@ input[type="color"]:focus,
   outline: thin solid 1;
 }
 
+/*.photo{
+  height:225px;
+  margin:0;
+  padding:0;
+}*/
 
+.thumbnail img{
+ min-height: 200px;
+ height:200px;
+ min-width:200px;
+}
 
-/*img{
+.thumbnail{
+  border:none;
+}
+
+img{
 	height:100%;
 	width:100%;
-}*/
+}
 
 img:hover{
 	opacity: .3;

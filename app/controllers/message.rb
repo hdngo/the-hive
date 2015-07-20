@@ -22,10 +22,18 @@ end
 delete '/messages' do
 		# p x === 2s
 	delete_message = Conversation.where(bumblebee_id: current_user.id, message_id: params[:message_id]).first
-	delete_message.destroy
+	delete_message.destroy();
+	if request.xhr?
+		p "you got to the route homie"
+		content_type :json
+		{msg_id: params[:message_id]}.to_json
+	else
+		redirect '/messages'
+	end
+	
 	# mess.destroy()
 	# Conversation.where()
-	redirect "bumblebee/#{current_user.username}/messages"
+	# redirect "bumblebee/#{current_user.username}/messages"
 
 end
 

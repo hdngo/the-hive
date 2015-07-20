@@ -3,7 +3,9 @@ post '/bumblebee/new' do
 	@bee = Bumblebee.new(username: params[:username], first_name: params[:first_name], last_name: params[:last_name], email: params[:email], phone_number: params[:phone_number])
 	@bee.password = params[:password]
 	@bee.save!
-	redirect '/'
+	login(@bee.username)
+	redirect "/bumblebee/user/#{@bee.username}"
+
 end
 
 get '/bumblebee/user/:username' do
