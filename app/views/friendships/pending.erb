@@ -1,0 +1,31 @@
+<div class="body-div">
+<% @pending_friends.each do|friend| %>
+<p> hi </p>
+<% end %>
+<ul class="list-group col-xs-6 col-xs-offset-3" id="friend-requests">
+	<p><%= "Pending friend requests:" %></p>
+	<% if @pending_friends.nil? %>
+	<li>No one likes you.</li>
+	<% else %>
+	<% @pending_friends.each do |pending_friend| %>
+	<li class="list-group-item friend-request" id=<%= pending_friend.id %>><span class="center-text"><a href="/bumblebee/user/<%= pending_friend.username %>"><%= full_name(pending_friend) + " (" + pending_friend.username + ")" %></a> wants to be friends!</span>
+		<!-- accept -->
+		<div class="choose-friend">
+		<form action="/bumblebee/friend_requests/accept" method="post" style="display:inline-block">
+		<input type="hidden" name="_method" value="put">
+		<input type="hidden" name="friend_id" value=<%= pending_friend.id %>>
+			<button type="submit" class="btn btn-warning">Accept</button>
+		</form>
+		<!-- ignore -->
+		<form action="#" method="post" style="display:inline-block">
+		<input type="hidden" name="_method" value="put">
+		<input type="hidden" name="friend_id" value=<%= pending_friend.id %>>
+			<button type="submit" class="btn btn-warning">Ignore</button>
+		</form>
+		</div>
+	</li></a>
+	<% end %>
+	<% end %>
+</ul>
+	
+</div>

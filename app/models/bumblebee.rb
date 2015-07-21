@@ -6,20 +6,6 @@ class Bumblebee < ActiveRecord::Base
   include Gravtastic
   gravtastic
 
-	
-	
-  
-
-
-  # i don't like the inverse friendship part, but apparently its the way of implementing mutual friendships..
-  has_many :friendships
-  has_many :friends, 
-		through: :friendships
-	has_many :inverse_friendships,
-  	foreign_key: "friend_id",
-  	class_name: "Friendship"
-	has_many :inverse_friends, through: :inverse_friendships, source: :bumblebee
-
 	has_many :photos
 
 	# old model
@@ -33,6 +19,18 @@ class Bumblebee < ActiveRecord::Base
 	# remodel
 	has_many :conversations
 	has_many :messages, through: :conversations
+
+	  # i don't like the inverse friendship part, but apparently its the way of implementing mutual friendships..
+
+	  # old way
+  has_many :friendships
+  has_many :friends, 
+		through: :friendships
+		# possibly remove this
+	has_many :inverse_friendships,
+  	foreign_key: "friend_id",
+  	class_name: "Friendship"
+	has_many :inverse_friends, through: :inverse_friendships, source: :bumblebee
 
 	def password
 		@password ||= Password.new(password_hash)
@@ -48,9 +46,31 @@ class Bumblebee < ActiveRecord::Base
 		@chat_messages.sort_by {|chat_message| chat_message.created_at}.reverse!
 	end
 
+	def accepted_friends
+		@true_friends = []
+		@approved_friends = self.friendships.where('accepted = true')
+		@approved_friends.each do |friend|
+			@true_friends << Bumblebee.find(friend.bumblebee_id)
+		end
+		@true_friends.uniq!
+	end
 
-	# def accepted_friends
-	# 	@accepted_friends = self.friendships
-	# end
+	def pending_friends
+		@debatable_friends = []
+		@unaccepted_friends = self.friendships.where('accepted = false')
+		@unaccepted_friends.each do |friend|
+			@debatable_friends << Bumblebee.find(friend.friend_id)
+			# p "NEW FRIEND"
+			# p Bumblebee.find(friend.bumblebee_id).username
+		end
+		@debatable_friends.uniq!
+		self.save!
+		@debatable_friends
+		# p "unaccepted"
+		# p @unaccepted_friends
+
+
+		
+	end
 
 end
