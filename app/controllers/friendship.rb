@@ -9,6 +9,7 @@ end
 
 get '/bumblebee/friend_requests' do
 	@pending_friends = current_user.pending_friends
+	p @pending_friends
  	erb :"friendships/pending"
 end
 

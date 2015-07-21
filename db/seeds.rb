@@ -75,6 +75,8 @@
 @user.save!
 
 @user = Bumblebee.create(username: "Trash", email: "mwhatters@gmail.com", first_name: "Marshall", last_name: "Hattersley", password_hash: "guitarhero", phone_number: "")
+@user.password=(@user.password_hash)
+@user.save!
 
 @user = Bumblebee.create(username: "Nick", email: "faintsoundofwater@gmail.com", first_name: "Nick", last_name: "Toulouse", password_hash: "nick", phone_number: "123-345-1234")
 @user.password=(@user.password_hash)
