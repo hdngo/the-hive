@@ -15,12 +15,10 @@ end
 put '/bumblebee/friend_requests/accept' do
 	@new_friend = Bumblebee.find(params[:friend_id])
 	Friendship.where("friend_id=#{@new_friend.id} AND bumblebee_id=#{current_user.id} OR friend_id=#{current_user.id} AND bumblebee_id=#{@new_friend.id}").each do |friendship| friendship.toggle!(:accepted) end
-		@new_friend.accepted_friends
-		@new_friend.pending_friends
-		@new_friend.save!
 		current_user.accepted_friends
 		current_user.pending_friends
-		current_user.save!
+		@new_friend.accepted_friends
+		@new_friend.pending_friends
 		@pending_friends = current_user.pending_friends
 	erb :"friendships/pending"	
 end

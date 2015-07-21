@@ -50,9 +50,11 @@ class Bumblebee < ActiveRecord::Base
 		@true_friends = []
 		@approved_friends = self.friendships.where('accepted = true')
 		@approved_friends.each do |friend|
-			@true_friends << Bumblebee.find(friend.bumblebee_id)
+			@true_friends << Bumblebee.find(friend.friend_id)
 		end
 		@true_friends.uniq!
+		self.save!
+		@true_friends
 	end
 
 	def pending_friends

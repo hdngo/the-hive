@@ -57,13 +57,20 @@
             <a href="/bumblebee/user/<%= friend.username %>"><img class="friend-pic" src="<%= friend.gravatar_url %>" alt="..."></a>
             <div class="caption">
               <h5 class="center-text"><%= full_name(friend) + " (" + friend.username + ")"%></h5>
-              <% if current_user != @user %>
-              <% if current_user.accepted_friends.include?(friend) || current_user == friend %>
+
+              <% if current_user.accepted_friends.include?(friend) %>
               <p class="center-text"><a href="#" class="btn btn-primary" role="button">Friends</a></p>
-              <% else %>
-              <p class="center-text"><a href="#" class="btn btn-primary" role="button">Add Friend</a></p>
+              <% end %>
+
+              <% if current_user != friend %>
+              <% if !current_user.accepted_friends.include?(friend)  %>
+              <form action="/bumblebee/friend_request" method="post">
+            <input type="hidden" name="user_id" value="<%= friend.id %>">
+            <input type="submit" value="send <%= friend.username %> a friend request"> 
+          </form>
               <% end %>
               <% end %>
+
               <!--  <a href="#" class="btn btn-default" role="button">Button</a></p> -->
             </div>
           </div>
