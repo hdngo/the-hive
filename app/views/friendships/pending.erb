@@ -1,0 +1,37 @@
+<div class="body-div">
+<p>"Pending friend requests:"</p>
+
+<% if @pending_friends.nil? %>
+	<p>No one likes you.</p>
+	<% else %>
+	
+<ul class="list-group col-xs-6 col-xs-offset-3" id="friend-requests">
+	
+	
+
+
+	<% @pending_friends.each do |pending_friend| %>
+	<% @personwhowantstobeyourfriendID = Friendship.where("friend_id=#{pending_friend.id} AND bumblebee_id=#{current_user.id} OR friend_id=#{current_user.id} AND bumblebee_id=#{pending_friend.id}").first.bumblebee_id %>
+	<% if @personwhowantstobeyourfriendID ==pending_friend.id %>
+	<li class="list-group-item friend-request" id="<%= pending_friend.id %>"><span class="center-text"><a href="/bumblebee/user/<%= pending_friend.username %>"><%= full_name(pending_friend) + " (" + pending_friend.username + ")" %></a> wants to be friends!</span>
+		<!-- accept -->
+		<div class="choose-friend">
+		<form action="/bumblebee/friend_requests/accept" method="post" style="display:inline-block">
+		<input type="hidden" name="_method" value="put">
+		<input type="hidden" name="friend_id" value=<%= pending_friend.id %>>
+			<button type="submit" class="btn btn-warning">Accept</button>
+		</form>
+		<!-- ignore -->
+		<form action="#" method="post" style="display:inline-block">
+		<input type="hidden" name="_method" value="put">
+		<input type="hidden" name="friend_id" value=<%= pending_friend.id %>>
+			<button type="submit" class="btn btn-warning">Ignore</button>
+		</form>
+		</div>
+	</li>
+	<% end %>
+	<% end %>
+	<% end %>
+</ul>
+	
+</div>
