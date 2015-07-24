@@ -5,9 +5,12 @@ end
 post '/messages' do
 	#hey create a new message
 	@recipient = Bumblebee.find_by(username: params[:recipient_username])
+
+	if @recipient.nil?
+		return "I pity da foo who entered such a garbage username."
+	else
 	@message = Message.create(recipient_id: @recipient.id, content: params[:content], bumblebee_id: current_user.id)
 		p "THIS IS THE #{current_user.id}"
-		
 		
 		current_user.messages << @message
 		# new
@@ -17,6 +20,7 @@ post '/messages' do
 	# else
 	# 	@errors = @message.errors.full_messages
 	# end
+	end
 end
 
 delete '/messages' do
