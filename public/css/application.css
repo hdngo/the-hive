@@ -45,6 +45,10 @@ p.headers{
   font-size:20px;
 }
 
+.user-friends{
+  padding-bottom:10px;
+}
+
 #background{
   /*background: #000 url('/imgs/greycombs.jpg') center center;*/
   width:100%;

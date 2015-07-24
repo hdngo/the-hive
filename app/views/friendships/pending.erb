@@ -16,13 +16,13 @@
 	<li class="list-group-item friend-request" id="<%= pending_friend.id %>"><span class="center-text"><a href="/bumblebee/user/<%= pending_friend.username %>"><%= full_name(pending_friend) + " (" + pending_friend.username + ")" %></a> wants to be friends!</span>
 		<!-- accept -->
 		<div class="choose-friend">
-		<form action="/bumblebee/friend_requests/accept" method="post" style="display:inline-block">
+		<form class="accept-request" action="/bumblebee/friend_requests/accept" method="post" style="display:inline-block">
 		<input type="hidden" name="_method" value="put">
 		<input type="hidden" name="friend_id" value=<%= pending_friend.id %>>
 			<button type="submit" class="btn btn-warning">Accept</button>
 		</form>
 		<!-- ignore -->
-		<form action="/bumblebee/friend_requests/ignore" method="post" style="display:inline-block">
+		<form class="ignore-request" action="/bumblebee/friend_requests/ignore" method="post" style="display:inline-block">
 		<input type="hidden" name="_method" value="put">
 		<input type="hidden" name="friend_id" value=<%= pending_friend.id %>>
 			<button type="submit" class="btn btn-warning">Ignore</button>

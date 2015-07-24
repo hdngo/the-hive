@@ -51,7 +51,7 @@
       <!-- <ul class=> -->
 
       <div class="row col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 friend-list">
-        <p class="center-text headers"><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</p>
+        <p class="center-text headers user-friends"><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</p>
         <% if @user.accepted_friends %>
         <% @user.accepted_friends.each do |friend|  %>
         <div class="col-sm-6 col-md-4">
@@ -85,7 +85,7 @@
       <div class="row col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
         <!-- <p class="col-xs-12">  -->
         <% if @user == current_user %>
-        <p class="center-text col-xs-12 headers">Your photos</p>
+        <p class="centefr-text col-xs-12 headers">Your photos</p>
         <% else %>
         <p class="col-xs-12 headers center-text">
           <%= @user.username %>
