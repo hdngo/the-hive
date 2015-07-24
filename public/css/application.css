@@ -44,6 +44,10 @@ a:visited{
   width:60%;
   margin:0 auto;
 }*/
+#welcome-text{
+  display:none;
+}
+
 
 p.headers{
   font-size:20px;

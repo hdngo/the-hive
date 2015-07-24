@@ -160,4 +160,6 @@ $(document).ready(function() {
 
   })
 
+  $('#welcome-text').fadeIn(2500);
+
 });
