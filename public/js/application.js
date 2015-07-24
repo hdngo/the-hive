@@ -77,4 +77,27 @@ $(document).ready(function() {
   	
   })
 
+  $('.search-bar').on('submit', function(e){
+    e.preventDefault();
+    var path = $(this).attr('action');
+    var searchData = $(this).serialize();
+    console.log(searchData);
+    var request = $.ajax({
+      url: path,
+      type: "post",
+      data: searchData,
+      dataType: "json"
+      // console.log(searchDa)
+    })
+    request.done(function(response){
+      console.log('yo')
+      console.log(response)
+      $('.body-div').remove();
+      $('body').append(response);
+    })
+    request.fail(function(response){
+      console.log('snap')
+    })
+  })
+
 });
