@@ -1,7 +1,11 @@
 <div class="body-div">
 
 	<ul class="list-group col-xs-6 col-xs-offset-3 messages">
-		<p> Your messages: </p>
+		<p class="headers"> Your messages: </p>
+
+		<% if @messages.empty? %>
+		<p>You have no friends.</p>
+		<% else %>
 		<% @messages.each do |message| %>
 		<% sender = Bumblebee.find_by(id: message.bumblebee_id) %>
 		<% recipient = Bumblebee.find_by(id: message.recipient_id) %>
@@ -26,6 +30,7 @@
 			<p ><em>From <%= sender.username %> <%= ((Time.now - message.created_at)/86400).round %> day(s) ago.</em></p>
 			<% end %>
 			</div>
+			<% end %>
 			<% end %>
 		</ul>
 	</div>

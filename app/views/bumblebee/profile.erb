@@ -1,12 +1,14 @@
 <div class="body-div">
 
-  <div class="row">
+  <div class="row col-xs-8 col-xs-offset-2 user-info">
     <div class="col-md-4 col-md-offset-4">
       <ul class="list-unstyled">
         <li>
           <img class="profile-pic" src="<%= @user.gravatar_url %>"></li>
-          <li><%= @user.username %>'s Profile</li>
-          <li><%= @user.first_name%> <%=@user.last_name %></li>
+          <br>
+          <li><p class="headers"><%= @user.username %>'s Profile</p></li>
+          <li><p><%= @user.first_name%> <%=@user.last_name %></p></li>
+
 
           <% if current_user != @user %>
 
@@ -15,10 +17,9 @@
            <% if !current_user.friends.include?(@user) || current_user.accepted_friends.nil?%>
           <form action="/bumblebee/friend_request" method="post">
             <input type="hidden" name="user_id" value="<%= @user.id %>">
-            <input type="submit" value="send <%= @user.username %> a friend request"> 
+            <input class="btn btn-primary" type="submit" value="Send <%= @user.username %> a friend request"> 
           </form>
           <% end %>
-          
           <% if !current_user.accepted_friends.nil? && current_user.accepted_friends.include?(@user)%>
           <li style="display:inline-block"><button class="btn btn-warning" type="button">Friends</button></li>
           <% end %>
@@ -32,7 +33,7 @@
            <% end %>
             
             <% if current_user == @user %>
-            <a class="btn btn-warning" href="/bumblebee/user/profile/edit">edit profile</a>
+            <a class="btn btn-warning" href="/bumblebee/user/profile/edit">Edit Profile</a>
             <% end %>
           </ul>
 
@@ -43,13 +44,14 @@
 
 
 
-
+      <br>
+      <br>
 
 
       <!-- <ul class=> -->
 
-      <div class="row col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
-        <p class="col-xs-12"><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</p>
+      <div class="row col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 friend-list">
+        <p class="center-text headers"><%= full_name(@user) + " (" + @user.username + ")" %>'s friends:</p>
         <% if @user.accepted_friends %>
         <% @user.accepted_friends.each do |friend|  %>
         <div class="col-sm-6 col-md-4">
@@ -59,14 +61,14 @@
               <h5 class="center-text"><%= full_name(friend) + " (" + friend.username + ")"%></h5>
 
               <% if current_user.accepted_friends.include?(friend) %>
-              <p class="center-text"><a href="#" class="btn btn-primary" role="button">Friends</a></p>
+              <p class="center-text"><a href="#" class="btn btn-warning" role="button">Friends</a></p>
               <% end %>
 
               <% if current_user != friend %>
               <% if !current_user.accepted_friends.include?(friend)  %>
               <form action="/bumblebee/friend_request" method="post">
             <input type="hidden" name="user_id" value="<%= friend.id %>">
-            <input type="submit" value="send <%= friend.username %> a friend request"> 
+            <input class="btn btn-primary col-xs-offset-1 col-xs-10" type="submit" value="Add Friend"> 
           </form>
               <% end %>
               <% end %>
@@ -83,20 +85,20 @@
       <div class="row col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
         <!-- <p class="col-xs-12">  -->
         <% if @user == current_user %>
-        <p class="col-xs-12">Your photos</p>
+        <p class="center-text col-xs-12 headers">Your photos</p>
         <% else %>
-        <p class="col-xs-12">
+        <p class="col-xs-12 headers center-text">
           <%= @user.username %>
           's photos</p>
           <% end %>
 
           <% if @user.photos.empty? %>
-          <h5 class="col-xs-12 no-photo-msg">No photos to display. :(</h5>
+          <h5 class="col-xs-12 no-photo-msg center-text">No photos to display. :(</h5>
 
           <% end %>
 
         </div>
-
+        
         <div class="user-photos row col-xs-10 col-xs-offset-1">
          <% unless @user.photos.empty? %>
          <% @user.photos.each do |photo| %>
@@ -108,16 +110,18 @@
         <% end %>
         <% end %>
       </div>
+    
 
       <!-- end photo -->
-      <div class="row">
+      <div class="row" style="margin-bottom:50px">
         <% if current_user == @user %>
         <!-- <div class="row"> -->
-        <form class="row col-xs-12 upload-photo" action="/bumblebee/user/upload_photo" method="post">
-          <div class="row">
-            <input class="form-control col-xs-4" id="photo-form" type="text" name="path" placeholder="local path to file">
+        <form class="row col-xs-8 col-xs-offset-2 upload-photo" action="/bumblebee/user/upload_photo" method="post">
+          <div>
+            <input class="form-control" id="photo-form" type="text" name="path" placeholder="local path to file">
           </div>
-          <div class="row">
+          <br>
+          <div>
             <input class="btn btn-warning col-xs-4 col-xs-offset-4" type="submit" value="Upload">
           </div>
         </form>

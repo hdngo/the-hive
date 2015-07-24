@@ -24,3 +24,7 @@ put '/bumblebee/friend_requests/accept' do
 	erb :"friendships/pending"	
 end
 
+put '/bumblebee/friend_requests/ignore' do
+	
+end
+
