@@ -15,7 +15,7 @@
           
           <!-- check empty friends -->
            <% if !current_user.friends.include?(@user) || current_user.accepted_friends.nil?%>
-          <form action="/bumblebee/friend_request" method="post">
+          <form class="add-friend-form" action="/bumblebee/friend_request" method="post">
             <input type="hidden" name="user_id" value="<%= @user.id %>">
             <input class="btn btn-primary" type="submit" value="Send <%= @user.username %> a friend request"> 
           </form>
@@ -118,7 +118,7 @@
         <!-- <div class="row"> -->
         <form class="row col-xs-8 col-xs-offset-2 upload-photo" action="/bumblebee/user/upload_photo" method="post">
           <div>
-            <input class="form-control" id="photo-form" type="text" name="path" placeholder="local path to file">
+            <input required class="form-control" id="photo-form" type="text" name="path" placeholder="local path to file">
           </div>
           <br>
           <div>

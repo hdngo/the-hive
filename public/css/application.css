@@ -34,6 +34,10 @@ body{
   border:none;
 }
 
+a:visited{
+  text-decoration:none;
+}
+
 
 /*.single-photo{
   height:60%;

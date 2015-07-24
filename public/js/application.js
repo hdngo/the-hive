@@ -139,4 +139,25 @@ $(document).ready(function() {
     })
   })
 
+  $('.add-friend-form').on('click', 'input[type="submit"]', function(e){
+    // $('.add-friend-form').hide();
+    e.preventDefault();
+    var path = $('.add-friend-form').attr('action');
+    var friendData = $('.add-friend-form').serialize();
+    var request = $.ajax({
+      url:path,
+      data:friendData,
+      type: "post",
+      dataType: "json"
+    })
+    request.done(function(response){
+      console.log("sup");
+      $('.add-friend-form').hide();
+    })
+    request.fail(function(response){
+      console.log("nope");
+    })
+
+  })
+
 });

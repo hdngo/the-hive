@@ -4,7 +4,12 @@ post '/bumblebee/friend_request' do
 	@user.friends << @current_user
 	current_user.pending_friends
 	@user.pending_friends
-	redirect "/bumblebee/user/#{@user.username}"
+	if request.xhr?
+		content_type :json
+		{someDataIDontNeed: @user.id}.to_json
+	else
+		redirect "/bumblebee/user/#{@user.username}"
+	end
 end
 
 get '/bumblebee/friend_requests' do
@@ -25,6 +30,7 @@ put '/bumblebee/friend_requests/accept' do
 	# (erb :"friendships/pending").to_json
 			content_type :json 
 			{friend_id: @new_friend.id}.to_json
+			# (erb :"friendships/pending", locals: {pending_friends: @pending_friends}).to_json
 		else
 			redirect '/bumblebee/friend_requests'
 		end

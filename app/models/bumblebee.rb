@@ -6,6 +6,9 @@ class Bumblebee < ActiveRecord::Base
   include Gravtastic
   gravtastic
 
+  validates :username, :email, uniqueness: true
+  validates :username, :email, :first_name, :last_name, :password_hash, presence: true
+
 	has_many :photos
 
 	# old model
