@@ -121,6 +121,10 @@ a:hover{
   background-color:#f0ad4e;
 }
 
+#new-msg{
+  display:block;
+}
+
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
