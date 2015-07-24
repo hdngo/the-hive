@@ -8,11 +8,13 @@
 
 html{
   height:100%;
+
 }
 
 body{
   /*min-height:100%;*/
   height:100%;
+  cursor: url('http://www.haotu.net/up/3775/128/eeyore_37.png'), default;
 }
 
 .white{
@@ -409,3 +411,8 @@ h2.center-text{
       margin-left:1%;
     }
   }
+
+
+  /**/
+  /**/
+  /* CURSOR HERE*/
