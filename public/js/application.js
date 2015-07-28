@@ -100,44 +100,44 @@ $(document).ready(function() {
     })
   })
 
-  $('.accept-request').on('click', 'button[type="submit"]', function(e){
-    e.preventDefault();
-    var path = $('.accept-request').attr('action')
-    var friendData = $('.accept-request').serialize();
-    var request = $.ajax({
-      url:path,
-      data: friendData,
-      type: "put",
-      dataType: "json"
-    })
-    request.done(function(response){
-      console.log("hello");
-      $('#friend-requests li#'+response.friend_id).remove();
-    })
-    request.fail(function(response){
-      console.log("didnt make it")
-    })
-  })
-  // $('.accept-request').closest('.friend-request').remove();
+  // $('.accept-request').on('click', 'button[type="submit"]', function(e){
+  //   e.preventDefault();
+  //   var path = $('.accept-request').attr('action')
+  //   var friendData = $('.accept-request').serialize();
+  //   var request = $.ajax({
+  //     url:path,
+  //     data: friendData,
+  //     type: "put",
+  //     dataType: "json"
+  //   })
+  //   request.done(function(response){
+  //     console.log("hello");
+  //     console.log(response.friend_id)
+  //     $('li#'+response.friend_id).remove();
+  //   })
+  //   request.fail(function(response){
+  //     console.log("didnt make it")
+  //   })
+  // })
 
-  $('.ignore-request').on('click', 'button[type="submit"]', function(e){
-    e.preventDefault();
-    var path = $('.ignore-request').attr('action')
-    var friendData = $('.ignore-request').serialize();
-    var request = $.ajax({
-      url:path,
-      data: friendData,
-      type: "put",
-      dataType: "json"
-    })
-    request.done(function(response){
-      console.log('hihi');
-      $('#friend-requests li#'+response.friend_id).remove();
-    })
-    request.fail(function(response){
-      console.log('bye');
-    })
-  })
+  // $('.ignore-request').on('click', 'button[type="submit"]', function(e){
+  //   e.preventDefault();
+  //   var path = $('.ignore-request').attr('action')
+  //   var friendData = $('.ignore-request').serialize();
+  //   var request = $.ajax({
+  //     url:path,
+  //     data: friendData,
+  //     type: "put",
+  //     dataType: "json"
+  //   })
+  //   request.done(function(response){
+  //     console.log('hihi');
+  //     $('#friend-requests li#'+response.friend_id).remove();
+  //   })
+  //   request.fail(function(response){
+  //     console.log('bye');
+  //   })
+  // })
 
   $('.add-friend-form').on('click', 'input[type="submit"]', function(e){
     // $('.add-friend-form').hide();
