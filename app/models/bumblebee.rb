@@ -1,10 +1,10 @@
 require 'bcrypt'
-require 'Gravtastic'
+# require 'Gravtastic'
 
 class Bumblebee < ActiveRecord::Base
   include BCrypt
-  include Gravtastic
-  gravtastic
+  # include Gravtastic
+  # gravtastic
 
   validates :username, :email, uniqueness: true
   validates :username, :email, :first_name, :last_name, :password_hash, presence: true

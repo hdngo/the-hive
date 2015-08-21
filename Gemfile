@@ -17,7 +17,7 @@ gem 'shotgun'
 
 gem 'bcrypt'
 
-gem 'gravtastic'
+# gem 'gravtastic'
 
 group :test do
   gem 'shoulda-matchers'
