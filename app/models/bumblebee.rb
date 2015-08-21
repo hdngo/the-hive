@@ -1,5 +1,5 @@
 require 'bcrypt'
-require 'Gravtastic'
+# require 'Gravtastic'
 
 class Bumblebee < ActiveRecord::Base
   include BCrypt
