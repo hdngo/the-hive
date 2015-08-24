@@ -3,14 +3,13 @@
 ##Description
 The Hive is a social media networking platform catered towards the students who were members of the San Francisco Bumblebees Cohort. Through The Hive, users are able to friend request one another, view each other's profiles, upload images to a gallery, and message one another.
 
-The Hive was built using Ruby, Active Record, Sinatra, Javascript (jQuery, AJAX), HTML, and CSS.
-
 [View it on Heroku!](https://the-hive-sf.herokuapp.com)
 
 ##Technologies Used
   * Backend: Ruby, ActiveRecord, Sinatra, SQLite3
   * Frontend: Javascript (jQuery, AJAX), HTML, CSS, and Bootstrap
   * Note: Originally, the Gravtastic Ruby gem was included, but because there were issues deploying the app to Heroku with it, it was removed, hence the default Bumblebee profile images.
+  * Hexagon-grid credits to Stack Overflow user[web-tiki](http://stackoverflow.com/users/1811992/web-tiki)
 
 
 ##User Stories
