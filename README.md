@@ -9,7 +9,7 @@ The Hive is a social media networking platform catered towards the students who 
   * Backend: Ruby, ActiveRecord, Sinatra, SQLite3
   * Frontend: Javascript (jQuery, AJAX), HTML, CSS, and Bootstrap
   * Note: Originally, the Gravtastic Ruby gem was included, but because there were issues deploying the app to Heroku with it, it was removed, hence the default Bumblebee profile images.
-  * Hexagon-grid credits to Stack Overflow user[web-tiki](http://stackoverflow.com/users/1811992/web-tiki)
+  * Hexagon-grid credits to Stack Overflow user [web-tiki](http://stackoverflow.com/users/1811992/web-tiki)
 
 
 ##User Stories
