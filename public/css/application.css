@@ -30,6 +30,7 @@ body{
   height:150px;
   width:150px;
   border-radius:50%;
+  border: 2px solid #F0AD4E;
 }
 
 .friend-thumbnail{
