@@ -25,6 +25,14 @@ The Hive is a social media networking platform catered towards the students who 
   * A user can upload images given a valid URL.
   * A user can edit their image details.
   * A user can view the photo gallery.
+ 
+ 
+##Screenshots
+![home](https://github.com/hdngo/the-hive/blob/master/the-hive-screenshots/home-screen.png?raw=true)
+![profile](https://github.com/hdngo/the-hive/blob/master/the-hive-screenshots/profile.png?raw=true)
+![message](https://github.com/hdngo/the-hive/blob/master/the-hive-screenshots/message.png?raw=true)
+![inbox](https://github.com/hdngo/the-hive/blob/master/the-hive-screenshots/inbox.png?raw=true)
+![gallery](https://github.com/hdngo/the-hive/blob/master/the-hive-screenshots/hex-gallery.png?raw=true)
 
 ##Challenges I Faced
   * Handling friend requests
